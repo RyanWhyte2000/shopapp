@@ -4,6 +4,8 @@ import 'package:shopapp/models/Products.dart';
 import 'package:shopapp/screen/details/components/product_title_with_image.dart';
 
 import 'Description.dart';
+import 'add_to_cart.dart';
+import 'counter_with_fav_btn.dart';
 
 class Body extends StatelessWidget {
   final Product product;
@@ -55,6 +57,9 @@ class Body extends StatelessWidget {
                                     color: Colors.black,
                                   ),
                             ),
+                            SizedBox(
+                              height: 50,
+                            ),
                             Text(
                               "Contact Number:",
                               style: Theme.of(context)
@@ -73,8 +78,15 @@ class Body extends StatelessWidget {
                                     color: Colors.black,
                                   ),
                             ),
+                            SizedBox(
+                              height: kDefaultPaddin / 2,
+                            ),
                             Description(product: product),
-                            CartCounter(),
+                            CounterWithFavBtn(),
+                            SizedBox(
+                              height: 50,
+                            ),
+                            AddToCart(product: product)
                           ],
                         ),
                       ),
@@ -84,47 +96,6 @@ class Body extends StatelessWidget {
                 ],
               ))
         ],
-      ),
-    );
-  }
-}
-
-class CartCounter extends StatefulWidget {
-  const CartCounter({Key? key}) : super(key: key);
-
-  @override
-  _CartCounterState createState() => _CartCounterState();
-}
-
-class _CartCounterState extends State<CartCounter> {
-  int numOfItems = 1;
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        BuildOutlineButton(),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: kDefaultPaddin / 2),
-          child: Text(
-            "01",
-            style: Theme.of(context).textTheme.headline6,
-          ),
-        ),
-      ],
-    );
-  }
-
-  SizedBox BuildOutlineButton() {
-    return SizedBox(
-      width: 40,
-      height: 32,
-      child: OutlineButton(
-        padding: EdgeInsets.zero,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(13),
-        ),
-        onPressed: () {},
-        child: Icon(Icons.remove),
       ),
     );
   }
